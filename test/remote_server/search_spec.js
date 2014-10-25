@@ -18,8 +18,6 @@ describe("access to remote servers", function() {
   });
 
   it("can search from Wikipedia's home page", function (done) {
-    this.timeout(10000);
-
     driver.get('http://en.wikipedia.org');
     driver.findElement(webdriver.By.name('search')).sendKeys('webdriver');
     driver.findElement(webdriver.By.name('go')).click();
@@ -37,8 +35,6 @@ describe("access to remote servers", function() {
 
   // prove we can do two navigations/tests using the same driver/browser
   it("can see the example repo on GitHub", function(done) {
-    this.timeout(10000);
-
     driver.get('http://github.com/gleneivey/mocha-node-webdriver.git');
     driver.wait(function() {
       return driver.
