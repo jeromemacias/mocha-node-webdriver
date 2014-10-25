@@ -1,0 +1,37 @@
+{
+  "name": "mocha-node-webdriver",
+  "version": "0.0.0",
+  "description": "An example of configuring mocha to drive in-browser tests from node via webdriver.",
+  "scripts": {
+    "test": "echo \"Sorry, no test specified yet\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gleneivey/mocha-node-webdriver.git"
+  },
+  "keywords": [
+    "node.js",
+    "mocha",
+    "selenium",
+    "webdriver",
+    "test",
+    "automation"
+  ],
+  "author": "Glen E. Ivey",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gleneivey/mocha-node-webdriver/issues"
+  },
+  "homepage": "https://github.com/gleneivey/mocha-node-webdriver",
+  "engines": {
+    "node": "~0.10.0"
+  },
+  "engineStrict": true,
+  "dependencies": {
+    "grunt": "~0.4.5",
+    "grunt-mocha-cli": "~1.10.0",
+    "mocha": "~1.21.4",
+    "selenium-webdriver": "~2.43.5",
+    "should": "~4.0.4"
+  }
+}
