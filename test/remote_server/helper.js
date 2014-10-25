@@ -15,6 +15,27 @@ var helpers = {
     builder.loggingTo(filePath || 'chromedriver.log');
     var service = builder.build();
     return new chrome.Driver(null, service);
+  },
+
+  waitForPageLoadAfter: function(driver, seleniumOperation) {
+    var bodyElement;
+    driver.
+        findElement(webdriver.By.tagName('BODY')).
+        then(function (element) {
+          bodyElement = element;
+        });
+    seleniumOperation();
+    driver.wait(function () {
+      return bodyElement.getAttribute('class').then(
+          function () {
+            return false; },
+          function (error) {
+            // better implementation:
+            //   check error.message for "stale element reference: element is not attached to the page document"
+            //   and reject the promise we're returning in that case
+            return true;
+          })
+    })
   }
 };
 

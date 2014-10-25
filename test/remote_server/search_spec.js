@@ -1,22 +1,7 @@
 
-var webdriver = require('selenium-webdriver'),
-    helper = require('./helper');
+var webdriver = require('selenium-webdriver');
 
 describe("access to remote servers", function() {
-  var driver;
-
-  before(function() {
-          // use either one
-    driver = helper.getChromeDriver();
-    //driver = helper.getChromeDriverWithVerboseLogging();
-  });
-
-  after(function(done) {
-    driver.
-        quit().
-        then(function() { done(); });
-  });
-
   it("can search from Wikipedia's home page", function (done) {
     driver.get('http://en.wikipedia.org');
     driver.findElement(webdriver.By.name('search')).sendKeys('webdriver');
