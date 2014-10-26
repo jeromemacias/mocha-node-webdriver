@@ -1,6 +1,6 @@
 
 var webdriver = require('selenium-webdriver'),
-    helper = require('./helper');
+    helper = require('./../helper');
 
 describe("pagination on remote server", function() {
   function clickNext() {

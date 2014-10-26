@@ -5,16 +5,13 @@ var webdriver = require('selenium-webdriver'),
 driver = 'is global';
 
 before(function() {
-console.log("running global before[All]");
-  // use either one
+      // use either one
   driver = helper.getChromeDriver();
   //driver = helper.getChromeDriverWithVerboseLogging();
 });
 
 after(function(done) {
-console.log("running global after[All]");
   driver.
       quit().
       then(function() { done(); });
 });
-

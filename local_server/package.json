@@ -1,0 +1,14 @@
+{
+  "name": "demonstration-test-server",
+  "description": "only useful as an example for selenium-node example tests",
+  "author": "Glen E. Ivey",
+  "license": "MIT",
+  "main": "server",
+  "engines": {
+    "node": "~0.10.0"
+  },
+  "engineStrict": true,
+  "dependencies": {
+    "express": "4.9.2"
+  }
+}
