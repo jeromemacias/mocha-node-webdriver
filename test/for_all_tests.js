@@ -4,14 +4,14 @@ var webdriver = require('selenium-webdriver'),
 
 driver = 'is global';
 
-before(function() {
+before(function () {
       // use either one
   driver = helper.getChromeDriver();
   //driver = helper.getChromeDriverWithVerboseLogging();
 });
 
-after(function(done) {
+after(function (done) {
   driver.
       quit().
-      then(function() { done(); });
+      then(function () { done(); });
 });

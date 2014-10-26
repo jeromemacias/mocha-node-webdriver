@@ -13,7 +13,7 @@ function configureGrunt(grunt) {
 
     mochacli: {
       all: {
-        options: { files: ['test/for_all_tests.js', 'test/**/*_spec.js']}
+        options: { files: ['test/**/*.js']}
       },
       remote: {
         options: { files: ['test/for_all_tests.js', 'test/remote_server/*_spec.js']}
