@@ -22,5 +22,5 @@ describe("local test server", function (done) {
           });
         }, 5000).
         then(function () { done(); });
-  })
+  });
 });
