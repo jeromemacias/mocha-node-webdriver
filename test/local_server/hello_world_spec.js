@@ -1,26 +1,23 @@
 
-var webdriver = require('selenium-webdriver');
+var webdriver = require('selenium-webdriver'),
+    test = require('selenium-webdriver/testing');
 
-describe("local test server", function (done) {
-  it("responds to GET /hello with 'world'", function (done) {
+test.describe("local test server", function () {
+  test.it("responds to GET /hello with 'world'", function () {
     driver.get('http://localhost:3000/hello');
-    driver.
-        wait(function () {
+    driver.wait(function () {
           return driver.getPageSource().then(function (content) {
             return content.indexOf('world') > -1;
           });
-        }, 5000).
-        then(function () { done(); });
+        }, 5000);
   });
 
-  it("404s for root", function (done) {
+  test.it("404s for root", function () {
     driver.get('http://localhost:3000/');
-    driver.
-        wait(function () {
+    driver.wait(function () {
           return driver.getPageSource().then(function (content) {
             return content.indexOf('Cannot GET /') > -1;
           });
-        }, 5000).
-        then(function () { done(); });
+        }, 5000);
   });
 });

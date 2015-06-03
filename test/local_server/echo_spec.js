@@ -1,18 +1,15 @@
 
-var webdriver = require('selenium-webdriver');
+var webdriver = require('selenium-webdriver'),
+    test = require('selenium-webdriver/testing');
 
-describe("operation GET /echo?echo=", function () {
-  it("includes value of echo parameter in response", function (done) {
+test.describe("operation GET /echo?echo=", function () {
+  test.it("includes value of echo parameter in response", function () {
     var echoString = 'please echo this';
     driver.get('http://localhost:3000/echo?echo=' + echoString.replace(/ /g, '%20'));
-    driver.
-        wait(function () {
+    driver.wait(function () {
           return driver.getPageSource().then(function (content) {
-            return content.indexOf(echoString) > -1;
+                return content.indexOf(echoString) > -1;
           });
-        }, 5000).
-        then(function () {
-          done();
-        });
+        }, 5000);
   });
 });

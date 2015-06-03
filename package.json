@@ -1,6 +1,6 @@
 {
   "name": "mocha-node-webdriver",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "An example of configuring mocha to drive in-browser tests from node via webdriver.",
   "homepage": "https://github.com/gleneivey/mocha-node-webdriver",
   "repository": {
@@ -22,10 +22,10 @@
   },
   "devDependencies": {
     "grunt": "~0.4.5",
-    "grunt-express-server": "~0.4.19",
-    "grunt-mocha-cli": "~1.10.0",
+    "grunt-express-server": "~0.5.1",
+    "grunt-mocha-cli": "~1.13.0",
     "matchdep": "~0.3.0",
-    "mocha": "~1.21.4",
-    "selenium-webdriver": "~2.43.5"
+    "mocha": "~2.2.5",
+    "selenium-webdriver": "~2.45.1"
   }
 }

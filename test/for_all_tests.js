@@ -1,17 +1,16 @@
 
 var webdriver = require('selenium-webdriver'),
+    test = require('selenium-webdriver/testing'),
     helper = require('./helper');
 
 driver = 'is global';
 
-before(function () {
+test.before(function () {
       // use either one
   driver = helper.getChromeDriver();
   //driver = helper.getChromeDriverWithVerboseLogging();
 });
 
-after(function (done) {
-  driver.
-      quit().
-      then(function () { done(); });
+test.after(function () {
+  driver.quit();
 });
