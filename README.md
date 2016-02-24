@@ -1,7 +1,8 @@
 mocha-node-webdriver
 ====================
 
-An example of using mocha to write web app integration tests that run in node.js and execute through a browser using Selenium WebDriver.
+An example of using mocha to write web app integration tests that run in node.js
+and execute through a browser using Selenium WebDriver.
 
 This repository contains a minimal configuration for writing integration tests:
 
@@ -26,29 +27,17 @@ this example:
 1. go to somewhere you want to keep your local copy of this repository
 2. `git clone https://github.com/gleneivey/mocha-node-webdriver.git`
 3. `cd mocha-node-webdriver`
-4. `npm install`
-5. `cd local_server`
-6. `npm install`
-7. `cd ..`
-8. `grunt`
+4. `make install`
+8. `make test-local`
 
-The `Gruntfile` in this example defines three tasks, including the
-default which is a union of the other two.  `grunt local` launches
-a local web server, opens the Chrome browser, and then navigates
-the browser to the server (`localhost:3000`) to execute a handful
-of trivial tests.  `grunt remote` launches Chrome and perform tests
-against two common public web services.  Simply executing `grunt`
-runs both sets of tests.  If you've been able to install and
-things are configured correctly, mocha should run and report
-"6 passing" tests.
+`make test-local` launches a local web server, opens the Chrome browser, and
+then navigates the browser to the server (`localhost:3030`) to execute a
+handful of trivial tests.
+If you've been able to install and things are configured correctly, mocha
+should run and report "3 passing" tests.
 
 #### Details of Note
 
-* The default grunt task which runs all the tests does *not* simply
-invoke the other two tasks.  Instead, it has its own `mochacli`
-configuration that covers all the test files.  Composing the other
-two tasks would run mocha twice, which would cause the test browser
-to be launched and closed twice.
 * There are several things that would be configureable in a real system
 (the local server port, test file paths, etc.) that have been
 hard-coded for simplicity/clarity.
@@ -60,9 +49,9 @@ try increasing the value here.
 * The file `test/for_all_tests.js` contains code that puts the
 `driver` variable into the global name space, as well as mocha
 `before()` and `after()` calls that initialize and close the
-browser and WebDriver sessions.  This file must be included in
-the file list given to mocha, and cannot be named by the
-`--require` option or `required` from within the test files.
+browser and WebDriver sessions. It also includes start of local server.
+This file must be included in the file list given to mocha, and cannot
+be named by the `--require` option or `required` from within the test files.
 * The remote tests don't perform a search on www.google.com like
 many other Selenuim WebDriver examples do.  It turns out that it's
 actually difficult for Chrome to navigate *off* a Google results
