@@ -1,4 +1,4 @@
-mocha-node-webdriver
+mocha-node-webdriver [![Build Status](https://travis-ci.org/jeromemacias/mocha-node-webdriver.svg?branch=master)](https://travis-ci.org/jeromemacias/mocha-node-webdriver)
 ====================
 
 An example of using mocha to write web app integration tests that run in node.js
