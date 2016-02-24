@@ -5,4 +5,4 @@ install:
 	@cd local_server && npm install && cd ..
 
 test-local:
-	./node_modules/.bin/mocha --compilers js:babel-register test/for_all_tests.js test/local_server/*_spec.js
+	PM2_HOME='.pm2' ./node_modules/.bin/mocha --compilers js:babel-register test/for_all_tests.js test/local_server/*_spec.js

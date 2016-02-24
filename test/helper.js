@@ -21,6 +21,22 @@ class Helper {
         return new chrome.Driver(null, service);
     }
 
+    getSauceLabsDriver(username, accessKey) {
+        const sauceServer = 'http://ondemand.saucelabs.com:80/wd/hub';
+        return (new webdriver.Builder()).
+            usingServer(sauceServer).
+            withCapabilities({
+                browserName: 'Chrome',
+                platform: 'Windows 10',
+                version: '48.0',
+                name: 'Sample selenium-webdriver test',
+                username,
+                accessKey,
+                'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER || 'local'
+            }).
+            build();
+    }
+
     waitForPageLoadAfter(driver, seleniumOperation) {
         let bodyElement;
         driver.

@@ -8,10 +8,6 @@ const pm2processName = 'webdriver-test-server';
 global.driver = 'is global';
 
 test.before((done) => {
-    // use either one
-    global.driver = helper.getChromeDriver();
-    // global.driver = helper.getChromeDriverWithVerboseLogging();
-
     pm2.connect(err => {
         if (err) {
             done(err);
@@ -28,6 +24,14 @@ test.before((done) => {
             done(err);
         });
     });
+
+    if (process.env.SAUCE_USERNAME && process.env.SAUCE_ACCESS_KEY) {
+        global.driver = helper.getSauceLabsDriver(process.env.SAUCE_USERNAME, process.env.SAUCE_ACCESS_KEY);
+    } else if (process.env.VERBOSE_MODE) {
+        global.driver = helper.getChromeDriverWithVerboseLogging();
+    } else {
+        global.driver = helper.getChromeDriver();
+    }
 });
 
 test.after((done) => {
