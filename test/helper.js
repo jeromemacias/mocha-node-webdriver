@@ -1,42 +1,41 @@
+import webdriver from 'selenium-webdriver';
+import chrome from 'selenium-webdriver/chrome';
 
-var webdriver = require('selenium-webdriver'),
-    chrome = require('selenium-webdriver/chrome');
+class Helper {
+    getChromeServiceBuilder() {
+        const chromeBinary = __dirname + '/../node_modules/.bin/chromedriver';
 
-var helpers = {
-  getChromeDriver: function () {
-    return new webdriver.Builder().
-        withCapabilities(webdriver.Capabilities.chrome()).
-        build();
-  },
+        return new chrome.ServiceBuilder(chromeBinary);
+    }
 
-  getChromeDriverWithVerboseLogging: function (filePath) {
-    var builder = new chrome.ServiceBuilder();
-    builder.enableVerboseLogging();
-    builder.loggingTo(filePath || 'chromedriver.log');
-    var service = builder.build();
-    return new chrome.Driver(null, service);
-  },
+    getChromeDriver() {
+        return new chrome.Driver(null, this.getChromeServiceBuilder().build());
+    }
 
-  waitForPageLoadAfter: function (driver, seleniumOperation) {
-    var bodyElement;
-    driver.
-        findElement(webdriver.By.tagName('BODY')).
-        then(function (element) {
-          bodyElement = element;
-        });
-    seleniumOperation();
-    driver.wait(function () {
-      return bodyElement.getAttribute('class').then(
-          function () {
-            return false; },
-          function (error) {
+    getChromeDriverWithVerboseLogging(filePath) {
+        const service = this.getChromeServiceBuilder().build()
+            .enableVerboseLogging()
+            .loggingTo(filePath || 'chromedriver.log')
+            .build();
+
+        return new chrome.Driver(null, service);
+    }
+
+    waitForPageLoadAfter(driver, seleniumOperation) {
+        let bodyElement;
+        driver.
+            findElement(webdriver.By.tagName('BODY')).
+            then(element => {
+                bodyElement = element;
+            });
+        seleniumOperation();
+        driver.wait(() => {
             // better implementation:
             //   check error.message for "stale element reference: element is not attached to the page document"
             //   and reject the promise we're returning in that case
-            return true;
-          })
-    })
-  }
-};
+            return bodyElement.getAttribute('class').then(() => false, (error) => true);
+        });
+    }
+}
 
-module.exports = helpers;
+export default new Helper();

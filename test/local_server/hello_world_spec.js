@@ -1,23 +1,17 @@
+import webdriver from 'selenium-webdriver';
+import { describe, it } from 'selenium-webdriver/testing';
+import { expect } from '../chai';
 
-var webdriver = require('selenium-webdriver'),
-    test = require('selenium-webdriver/testing');
+describe('local test server', () => {
+    it('responds to GET /hello with "world"', () => {
+        driver.get('http://localhost:3030/hello').then(() => {
+            expect(driver.getPageSource()).to.eventually.contain('world');
+        });
+    });
 
-test.describe("local test server", function () {
-  test.it("responds to GET /hello with 'world'", function () {
-    driver.get('http://localhost:3000/hello');
-    driver.wait(function () {
-          return driver.getPageSource().then(function (content) {
-            return content.indexOf('world') > -1;
-          });
-        }, 5000);
-  });
-
-  test.it("404s for root", function () {
-    driver.get('http://localhost:3000/');
-    driver.wait(function () {
-          return driver.getPageSource().then(function (content) {
-            return content.indexOf('Cannot GET /') > -1;
-          });
-        }, 5000);
-  });
+    it('404s for root', () => {
+        driver.get('http://localhost:3030/').then(() => {
+            expect(driver.getPageSource()).to.eventually.contain('Cannot GET /');
+        });
+    });
 });
