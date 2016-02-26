@@ -1,17 +1,18 @@
 import webdriver from 'selenium-webdriver';
-import test from 'selenium-webdriver/testing';
+import { before, afterEach, after } from 'selenium-webdriver/testing';
 import helper from './helper';
 import pm2 from 'pm2';
+import request from 'request';
 
 const pm2processName = 'webdriver-test-server';
+let allPassed = true;
 
 global.driver = 'is global';
 
-test.before((done) => {
+before((done) => {
     pm2.connect(err => {
         if (err) {
             done(err);
-
             return;
         }
 
@@ -34,13 +35,38 @@ test.before((done) => {
     }
 });
 
-test.after((done) => {
+afterEach(function() {
+    allPassed = allPassed && (this.currentTest.state === 'passed');
+});
+
+if (process.env.SAUCE_USERNAME && process.env.SAUCE_ACCESS_KEY && allPassed) {
+    after((done) => {
+        global.driver.getSession().then(session => {
+            request({
+                url: `https://saucelabs.com/rest/v1/${process.env.SAUCE_USERNAME}/jobs/${session.getId()}`,
+                method: 'PUT',
+                auth: {
+                    user: process.env.SAUCE_USERNAME,
+                    pass: process.env.SAUCE_ACCESS_KEY
+                },
+                json: { passed: true }
+            }, function (error, response, body) {
+                if (error) {
+                    return done(error);
+                }
+                console.log(`SauceLabs results available at https://saucelabs.com/beta/tests/${session.getId()}`);
+                done();
+            });
+        });
+    });
+}
+
+after((done) => {
     global.driver.quit();
 
     pm2.connect(err => {
         if (err) {
-            done();
-
+            done(err);
             return;
         }
 
