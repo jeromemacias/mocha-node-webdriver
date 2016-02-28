@@ -29,3 +29,4 @@ node_modules
 *~
 
 .pm2
+local_server/build/*

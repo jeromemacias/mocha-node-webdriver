@@ -11,7 +11,7 @@ describe('local test server', () => {
 
     it('404s for root', () => {
         driver.get('http://localhost:3030/').then(() => {
-            expect(driver.getPageSource()).to.eventually.contain('Cannot GET /');
+            expect(driver.getPageSource()).to.eventually.contain('Not Found');
         });
     });
 });

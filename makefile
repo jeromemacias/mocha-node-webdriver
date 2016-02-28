@@ -2,7 +2,7 @@ install:
 	@echo "Installing Node dependencies"
 	@npm install
 	@echo "Installing Local server Node dependencies"
-	@cd local_server && npm install && cd ..
+	@cd local_server && make install && cd ..
 
 test-local:
 	PM2_HOME='.pm2' ./node_modules/.bin/mocha --compilers js:babel-register test/for_all_tests.js test/local_server/*_spec.js

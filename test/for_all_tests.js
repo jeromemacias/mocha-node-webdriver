@@ -18,14 +18,16 @@ before((done) => {
 
         pm2.start({
             name: pm2processName,
-            script: __dirname + '/../local_server/server.js',
+            script: __dirname + '/../local_server/build/server.js',
             exec_mode: 'fork'
         }, (err, apps) => {
             pm2.disconnect();
             done(err);
         });
     });
+});
 
+before(() => {
     if (process.env.SAUCE_USERNAME && process.env.SAUCE_ACCESS_KEY) {
         global.driver = helper.getSauceLabsDriver(process.env.SAUCE_USERNAME, process.env.SAUCE_ACCESS_KEY);
     } else if (process.env.VERBOSE_MODE) {

@@ -1,12 +1,19 @@
-var express = require('express'),
-    app = express();
+import Koa from 'koa';
+import koaRouter from 'koa-router';
 
-app.get('/hello', function (req, res) {
-    res.send('world');
+const app = new Koa();
+const router = new koaRouter();
+
+router.get('/hello', (ctx) => {
+    ctx.body = 'world';
 });
-app.get('/echo', function (req, res) {
-    res.send('your query was:  ' + req.query.echo);
+router.get('/echo/:echo', (ctx) => {
+    ctx.body = 'your query was:  ' + ctx.params.echo;
 });
+
+app
+    .use(router.routes())
+    .use(router.allowedMethods());
 
 if (!module.parent) {
     app.listen(3030);
