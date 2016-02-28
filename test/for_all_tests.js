@@ -41,7 +41,7 @@ afterEach(function() {
     allPassed = allPassed && (this.currentTest.state === 'passed');
 });
 
-if (process.env.SAUCE_USERNAME && process.env.SAUCE_ACCESS_KEY && allPassed) {
+if (process.env.SAUCE_USERNAME && process.env.SAUCE_ACCESS_KEY) {
     after((done) => {
         global.driver.getSession().then(session => {
             request({
@@ -51,7 +51,7 @@ if (process.env.SAUCE_USERNAME && process.env.SAUCE_ACCESS_KEY && allPassed) {
                     user: process.env.SAUCE_USERNAME,
                     pass: process.env.SAUCE_ACCESS_KEY
                 },
-                json: { passed: true }
+                json: { passed: allPassed }
             }, function (error, response, body) {
                 if (error) {
                     return done(error);
