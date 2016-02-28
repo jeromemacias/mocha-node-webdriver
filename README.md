@@ -20,12 +20,11 @@ be `npm install`ed separately, but is otherwise boring.
 To run the tests in this example, you'll need to have `git`, `node`,
 `npm`, and the Chrome browser installed already.  If you don't, or the versions
 don't match this code's requirements, error messages will let you know.
-In addition, [setup `chromedriver` for your system](https://sites.google.com/a/chromium.org/chromedriver/getting-started)
 Once prerequisites in place, follow these steps particular to
 this example:
 
 1. go to somewhere you want to keep your local copy of this repository
-2. `git clone https://github.com/gleneivey/mocha-node-webdriver.git`
+2. `git clone https://github.com/jeromemacias/mocha-node-webdriver`
 3. `cd mocha-node-webdriver`
 4. `make install`
 8. `make test-local`
