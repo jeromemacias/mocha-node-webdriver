@@ -5,4 +5,4 @@ install:
 	@cd local_server && make install && cd ..
 
 test-local:
-	PM2_HOME='.pm2' ./node_modules/.bin/mocha --compilers js:babel-register test/for_all_tests.js test/local_server/*_spec.js
+	PM2_HOME='.pm2' ./node_modules/.bin/mocha --timeout 30000 --compilers js:babel-register test/setup.js test/local_server/*_spec.js

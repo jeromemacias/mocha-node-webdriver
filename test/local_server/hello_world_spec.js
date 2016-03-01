@@ -1,6 +1,7 @@
 import webdriver from 'selenium-webdriver';
 import { describe, it } from 'selenium-webdriver/testing';
-import { expect } from '../chai';
+import driver from '../../ssw/driver';
+import { expect } from '../../ssw/assert/chai';
 
 describe('local test server', () => {
     it('responds to GET /hello with "world"', () => {

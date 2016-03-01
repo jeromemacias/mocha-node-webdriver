@@ -1,6 +1,7 @@
 import webdriver from 'selenium-webdriver';
 import { describe, it } from 'selenium-webdriver/testing';
-import { expect } from '../chai';
+import driver from '../../ssw/driver';
+import { expect } from '../../ssw/assert/chai';
 
 describe('operation GET /echo?echo=', () => {
     it('includes value of echo parameter in response', () => {
