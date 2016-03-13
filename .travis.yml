@@ -8,7 +8,7 @@ cache:
 install:
   - make install
 script:
-  - make test-local
+  - make test
 addons:
   sauce_connect: true
   apt:
