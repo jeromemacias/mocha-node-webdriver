@@ -1,6 +1,6 @@
 import webdriver from 'selenium-webdriver';
 
-export default function getSauceLabsDriver(username, accessKey, projectName = 'ssw sample test', tunnelName = 'local', capabilities = {}) {
+export default function getSauceLabsDriver(username, accessKey, browser, projectName = 'ssw sample test', tunnelName = 'local', capabilities = {}) {
     // auto detect tunnel name depends on travis-ci env var
     if (process.env.TRAVIS_JOB_NUMBER) {
         tunnelName = process.env.TRAVIS_JOB_NUMBER;
@@ -9,9 +9,9 @@ export default function getSauceLabsDriver(username, accessKey, projectName = 's
     return (new webdriver.Builder()).
         usingServer('http://ondemand.saucelabs.com:80/wd/hub').
         withCapabilities({
-            browserName: 'Chrome',
-            platform: 'Windows 10',
-            version: '48.0',
+            browserName: browser.name.charAt(0).toUpperCase() + browser.name.slice(1).toLowerCase(),
+            platform: browser.platform,
+            version: browser.version,
             name: projectName,
             username,
             accessKey,
