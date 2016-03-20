@@ -8,7 +8,7 @@ afterEach(function () { // we need to keep the original this (do not use arrow f
     allPassed = allPassed && (this.currentTest.state === 'passed');
 });
 
-if (process.env.SAUCE_USERNAME && process.env.SAUCE_ACCESS_KEY) {
+if (process.env.SAUCE) {
     after((done) => {
         postJobUpdate(driver, process.env.SAUCE_USERNAME, process.env.SAUCE_ACCESS_KEY, allPassed, done);
     });

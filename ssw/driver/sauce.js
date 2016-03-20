@@ -1,9 +1,12 @@
 import webdriver from 'selenium-webdriver';
 
 export default function getSauceLabsDriver(username, accessKey, browser, projectName = 'ssw sample test', tunnelName = 'local', capabilities = {}) {
-    // auto detect tunnel name depends on travis-ci env var
+    // auto detect tunnel name depends on travis-ci or circle-ci env var
     if (process.env.TRAVIS_JOB_NUMBER) {
         tunnelName = process.env.TRAVIS_JOB_NUMBER;
+    }
+    if (process.env.CIRCLE_BUILD_NUM) {
+        tunnelName = process.env.CIRCLE_BUILD_NUM;
     }
 
     return (new webdriver.Builder()).

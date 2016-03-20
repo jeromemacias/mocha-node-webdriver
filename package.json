@@ -21,7 +21,7 @@
     "url": "https://github.com/gleneivey/mocha-node-webdriver/issues"
   },
   "engines": {
-    "node": "~4.2"
+    "node": "~5.1"
   },
   "engine-strict": true,
   "dependencies": {},
