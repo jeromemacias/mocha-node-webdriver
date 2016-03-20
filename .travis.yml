@@ -1,26 +1,32 @@
 language: node_js
 node_js:
   - '5'
-sudo: false
+dist: trusty
+sudo: required
 cache:
   directories:
     - node_modules
 install:
   - make install
+before_script:
+  - sh -e /etc/init.d/xvfb start
+  - sleep 3 # give xvfb some time to start
 script:
   - make test
 addons:
   sauce_connect: true
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - g++-4.8
+  firefox: '44.0'
 env:
   global:
-    - CXX=g++-4.8
+    - CHROME_BIN=chromium-browser
+    - DISPLAY=:99.0
     - secure: mq1FTVrmzUU9s7FXmR3Wr2Aoad4JJ3bhxrzA435ItBXc8xC+WI3Lxgmu2OPc9kPdxLA3a/toFmzgZEzvDzwNKyilm9ibgDMCX2E9wAo8tbjmdNodT3yhP8C85VXSgG+Bzu9Sp58T/mOw2HsPv0ApbcwktL0SSK5m85JIZ7gMXXTsvBwz9Qi67L+B031KSA7ACLC0MJXjSMm75waC4+2Dq4Unwyw1Pu55fUYiL+aG7BidhcNZB+rutTWDOrZHPCa163qtoTj+u/WNP723FX0oXYV8LAEIN9em9QD4nJHSWqgRlQoqUlL/MAZpEmMOcWQEbHA9ERko2Tb8xBnzy52o3CiMH0rk5tWG5V3Btqe5iTnh3Njix2ZHWzhecMhMYE+niAbDYn6fDkjq1x+C10ap6XATeAsMKqlsQvcVqzKTiZyY+O8bXcgbCHGGUazdngcpSo7Iu1bMa50Z0ZkbvfJsZ/vguUVyw9rxzMSXAVjpIrljKpSxBFP1ziULMLuc06ZTIAe66TszL2/L2H8Cw+72dUca2q51uWXVpMVq1o/qkKAX66lmANJOqmplFzmxYjudtgQi0obYvffxlVS7DRNJQ0UVzzXWAfIxAXdeSxiTHN/lhNwiCdpi8M/XeS6tVEtsomTFwgX9qEzCwwJVGTfOCF7sPMnNfZonDdarUXhG1DI=
     - secure: sx94nwp5aPd8ClG5JFIk6Ya2WQ46bpGDRb2ReQ1YtTXv63vWwx3WCzuBKUyeB6XIZ5HHzrS0nTcOpmrLSlU2aQQlma8RJ8hHTaNEc9vDIevcCbvfgPXJj2CXK278b6Ks6MCAcAOwJirlaruzmIIwy6mrn3TfEAWk0JC/HLqdPfmEaF1zYOkeBkBxEhkHb50+61nji5Y/YERp90J32Zu1IBug1JvOQ1yvntUtEDQRkt8wMAYSp4lClb3Ei2OmHek7lYYL/oqssHX1ao5nVOYBeV+u0+uvD3LlYkUd/Now7I5N4WIpYs85Zheg9srHhw6SaPLchBI26bfU0RieKK0WsqRYu/VQ+cmtQdujjfrP+iMGymPkk+678Cq9aNV0D6M3i7VFShrUIUgeeE2S0nL6jV0Qrt38TWl85zlaRKSWh6yEL2Bn7bYT5g3BXJeDW7Qjr2PPDOc3Es064/Fyr72/XuNPLl3HhIrc4N+m8A/gqrv2vpTAgAxfcqtMxVH3IQvEbZPgxMlf47Xh2eYYsLy6RsfjV6A+EacYCrAQiG2WO4aRV9hrNZUY19ZvDIle1kPwZtQVOqCDmdZKX5PaiaIcWdiR2Ym93sd9A4LaMgDCOZP+NEO91os103qJApdfmJuRFJVwSO6C2beh53/2BigHqT6IpVtVFjTJ19qTp+3XCPw=
+  matrix:
+    - SELENIUM_BROWSER=chrome
+    - SELENIUM_BROWSER=firefox
+    - SAUCE=true SELENIUM_BROWSER=chrome
+    - SAUCE=true SELENIUM_BROWSER=firefox
 branches:
   only:
     - master

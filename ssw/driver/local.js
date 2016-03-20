@@ -1,4 +1,5 @@
 import chrome from 'selenium-webdriver/chrome';
+import firefox from 'selenium-webdriver/firefox';
 
 function getChromeService() {
     const chromeBinary = __dirname + '/../../node_modules/.bin/chromedriver';
@@ -6,8 +7,12 @@ function getChromeService() {
     return (new chrome.ServiceBuilder(chromeBinary)).build();
 }
 
+function getChromeOptions() {
+    return new chrome.Options().addArguments(['--no-sandbox']);
+}
+
 function getChromeDriver() {
-    return new chrome.Driver(null, getChromeService());
+    return new chrome.Driver(getChromeOptions(), getChromeService());
 }
 
 function getChromeDriverWithVerboseLogging(filePath) {
@@ -16,7 +21,11 @@ function getChromeDriverWithVerboseLogging(filePath) {
         .loggingTo(filePath || __dirname + '/../../chromedriver.log')
         .build();
 
-    return new chrome.Driver(null, service);
+    return new chrome.Driver(getChromeOptions(), service);
+}
+
+function getFirefoxDriver() {
+    return new firefox.Driver();
 }
 
 export default function getLocalDriver(browser, options = {}) {
@@ -26,6 +35,8 @@ export default function getLocalDriver(browser, options = {}) {
             return getChromeDriverWithVerboseLogging(options.logPath)
         }
         return getChromeDriver();
-    default: throw new Error('No local driver found for ' + browser);
+    case "firefox":
+        return getFirefoxDriver();
+    default: throw new Error(`No local driver found for "${browser}"`);
     }
 }
