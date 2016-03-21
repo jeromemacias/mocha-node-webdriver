@@ -1,5 +1,8 @@
-mocha-node-webdriver [![Build Status](https://travis-ci.org/jeromemacias/mocha-node-webdriver.svg?branch=master)](https://travis-ci.org/jeromemacias/mocha-node-webdriver) [![Circle CI](https://circleci.com/gh/jeromemacias/mocha-node-webdriver/tree/master.svg?style=svg)](https://circleci.com/gh/jeromemacias/mocha-node-webdriver/tree/master)
+mocha-node-webdriver
 ====================
+[![Build Status](https://travis-ci.org/jeromemacias/mocha-node-webdriver.svg?branch=master)](https://travis-ci.org/jeromemacias/mocha-node-webdriver) [![Circle CI](https://circleci.com/gh/jeromemacias/mocha-node-webdriver/tree/master.svg?style=svg)](https://circleci.com/gh/jeromemacias/mocha-node-webdriver/tree/master) [![Sauce Test Status](https://saucelabs.com/buildstatus/jeromemacias-mocha)](https://saucelabs.com/u/jeromemacias-mocha)
+
+> Use any browser on [BrowserStack](https://www.browserstack.com/)!
 
 An example of using mocha to write web app integration tests that run in node.js
 and execute through a browser using Selenium WebDriver.
