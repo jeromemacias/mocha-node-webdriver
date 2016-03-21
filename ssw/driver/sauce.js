@@ -8,7 +8,7 @@ export default function getSauceLabsDriver(username, accessKey, browser, project
     }
     if (process.env.CIRCLE_BUILD_NUM) {
         tunnelName = process.env.CIRCLE_BUILD_NUM;
-        build = 'circle-' + localIdentifier;
+        build = 'circle-' + tunnelName;
     }
 
     return (new webdriver.Builder()).
