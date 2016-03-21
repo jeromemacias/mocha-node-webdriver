@@ -1,6 +1,7 @@
 import { before, afterEach, after } from 'selenium-webdriver/testing';
 import { pm2start, pm2stop } from '../../ssw/hook/pm2';
-import { postJobUpdate } from '../../ssw/hook/sauce';
+import { postJobUpdate as browserstackPostUpdateJob } from '../../ssw/hook/borwserstack';
+import { postJobUpdate as saucePostUpdateJob } from '../../ssw/hook/sauce';
 import driver from '../../ssw/driver';
 
 const pm2processName = 'webdriver-test-server';
@@ -24,9 +25,14 @@ afterEach(function () { // we need to keep the original this (do not use arrow f
     allPassed = allPassed && (this.currentTest.state === 'passed');
 });
 
-if (process.env.SAUCE) {
+if (process.env.BROWSERSTACK) {
     after((done) => {
-        postJobUpdate(driver, process.env.SAUCE_USERNAME, process.env.SAUCE_ACCESS_KEY, allPassed, done);
+        browserstackPostUpdateJob(driver, process.env.BROWSERSTACK_USERNAME, process.env.BROWSERSTACK_ACCESS_KEY, allPassed, done);
+    });
+
+} else if (process.env.SAUCE) {
+    after((done) => {
+        saucePostUpdateJob(driver, process.env.SAUCE_USERNAME, process.env.SAUCE_ACCESS_KEY, allPassed, done);
     });
 }
 

@@ -3,16 +3,6 @@ node_js:
   - '5'
 dist: trusty
 sudo: required
-cache:
-  directories:
-    - node_modules
-install:
-  - make install
-before_script:
-  - sh -e /etc/init.d/xvfb start
-  - sleep 3 # give xvfb some time to start
-script:
-  - make test-local
 addons:
   sauce_connect: true
   firefox: '44.0'
@@ -22,11 +12,29 @@ env:
     - DISPLAY=:99.0
     - secure: mq1FTVrmzUU9s7FXmR3Wr2Aoad4JJ3bhxrzA435ItBXc8xC+WI3Lxgmu2OPc9kPdxLA3a/toFmzgZEzvDzwNKyilm9ibgDMCX2E9wAo8tbjmdNodT3yhP8C85VXSgG+Bzu9Sp58T/mOw2HsPv0ApbcwktL0SSK5m85JIZ7gMXXTsvBwz9Qi67L+B031KSA7ACLC0MJXjSMm75waC4+2Dq4Unwyw1Pu55fUYiL+aG7BidhcNZB+rutTWDOrZHPCa163qtoTj+u/WNP723FX0oXYV8LAEIN9em9QD4nJHSWqgRlQoqUlL/MAZpEmMOcWQEbHA9ERko2Tb8xBnzy52o3CiMH0rk5tWG5V3Btqe5iTnh3Njix2ZHWzhecMhMYE+niAbDYn6fDkjq1x+C10ap6XATeAsMKqlsQvcVqzKTiZyY+O8bXcgbCHGGUazdngcpSo7Iu1bMa50Z0ZkbvfJsZ/vguUVyw9rxzMSXAVjpIrljKpSxBFP1ziULMLuc06ZTIAe66TszL2/L2H8Cw+72dUca2q51uWXVpMVq1o/qkKAX66lmANJOqmplFzmxYjudtgQi0obYvffxlVS7DRNJQ0UVzzXWAfIxAXdeSxiTHN/lhNwiCdpi8M/XeS6tVEtsomTFwgX9qEzCwwJVGTfOCF7sPMnNfZonDdarUXhG1DI=
     - secure: sx94nwp5aPd8ClG5JFIk6Ya2WQ46bpGDRb2ReQ1YtTXv63vWwx3WCzuBKUyeB6XIZ5HHzrS0nTcOpmrLSlU2aQQlma8RJ8hHTaNEc9vDIevcCbvfgPXJj2CXK278b6Ks6MCAcAOwJirlaruzmIIwy6mrn3TfEAWk0JC/HLqdPfmEaF1zYOkeBkBxEhkHb50+61nji5Y/YERp90J32Zu1IBug1JvOQ1yvntUtEDQRkt8wMAYSp4lClb3Ei2OmHek7lYYL/oqssHX1ao5nVOYBeV+u0+uvD3LlYkUd/Now7I5N4WIpYs85Zheg9srHhw6SaPLchBI26bfU0RieKK0WsqRYu/VQ+cmtQdujjfrP+iMGymPkk+678Cq9aNV0D6M3i7VFShrUIUgeeE2S0nL6jV0Qrt38TWl85zlaRKSWh6yEL2Bn7bYT5g3BXJeDW7Qjr2PPDOc3Es064/Fyr72/XuNPLl3HhIrc4N+m8A/gqrv2vpTAgAxfcqtMxVH3IQvEbZPgxMlf47Xh2eYYsLy6RsfjV6A+EacYCrAQiG2WO4aRV9hrNZUY19ZvDIle1kPwZtQVOqCDmdZKX5PaiaIcWdiR2Ym93sd9A4LaMgDCOZP+NEO91os103qJApdfmJuRFJVwSO6C2beh53/2BigHqT6IpVtVFjTJ19qTp+3XCPw=
+    - secure: NPJSKvmLlWNCIZuEWoFFO4Aa2G+zYnVfNNj247XI/FkegsQ0BxIq2UuX+6nY8BDfxddoGQerRR8Pe5joRks5Ffjq4B4c4BJPN/fyAR8kaH5QaPyUvMlmibvCgwJgpSNIIWbLEJFMl1gx14SQrw/d1N8bRWLpBLSdq6WrRRSbz6eQwtbXq7Sh/9WItG3lgQq5EnyTx6eYXOLBGkeu23yLZ3Jcjdiuss/cOOkKxcz+OL4bE3Zn/allSWcdOw1/sujShpFjPOAHzKhrGcjn/6KQhVu3RHew6rKgrl8OaDCT+hyCeAwhgKUbEErJpDijOB0US/gsyz9teZrcCEvMZx1sKqrxxRCJNLD1Gx6yzkMjlbo+nEmGYNM9JLw9/xEjWGPsaBTGS8oIP+KpI3V2zSnAarF4hztAvzSPuvR7v8gNbW4Uz1LaWDsq9ZjlDiM0kqJ0v/+vDYWUK/NHOhtO4lld6unTxszlWV5zwus7Tro2hTnv5gPzvN5l16F9ByxawpBtUXrmi4ZVJPtj+DJIkEPpOL+ZElInNV1OzIBR47k5nTb5EO8euShWVGrou4+d2HJreY+x7UzTEpBdXqaKc/XGcHg18n6ijvrxNwiuH0hEenBjBKEmMCBLxtkLDi7FieCzHQzpRLt0s69D+vFq1dPXRhL/793nE6UZM2p938X9lok=
+    - secure: BIl3VOux1u4URAshUbC8qbUvznHfG3ngtDgqhBiVLbSxihuOT57sepoFGW6DRh3Kq7wfanhYNnXDwpad9FlvHqoj+/7eD2wqrx70T8VlQhIEFe05bYlYznkmdeItmjHGyOB85dQjeDDQsjVV+imq/X5Ui19AcidibMGho8vPWFsqDXoieI5CnTm6aLhaafKydCs4TNgDYorosw17/6noI8Ry17T2kh75n72lifYMOydaeSroF+anDl28IKONqCLJ67jAxsO7GbvWT20SFMr/FHlPo9n93Sgmqs96d0IZa8yBJU3rwfuv/i/nq8Iz2eE/Z/Xusujge3yxPt1xGf4feqz18HLRBtVwnOez3u30yvcwwlpv5lHwKY5mlMn4d1iM1FyqO8jsDJl9n7lg8R94SZgqlJJ4J6KhMlBlNLngvT3NbYrMtyIbnh2ZTrYIXk438b4f/CwfilzgwHHP2MLch3joOoj6BLBYQi3m9Tjwhtu2Nvw4Z51Gj07hUOoWKzg2LvFdBjJAuIC0mNyiioftFj1r1e4FWJIZdsGjEW+JszOerRPIqHtWJ9Qy4+QrGIBchvhU/u8Ilth0PVWL4MGTRs7pOb+UEuAuvZo+piJTQKTnLe3oCZ2YFaI2Ii9FTceyW7OBBkcXWP8I8cJYE2qxZBTKZOireMRf5+hpnzXkcv0=
   matrix:
     - SELENIUM_BROWSER=chrome
     - SELENIUM_BROWSER=firefox
+    - BROWSERSTACK=true SELENIUM_BROWSER=chrome
+    - BROWSERSTACK=true SELENIUM_BROWSER=firefox
     - SAUCE=true SELENIUM_BROWSER=chrome
     - SAUCE=true SELENIUM_BROWSER=firefox
+cache:
+  directories:
+    - node_modules
+before_install:
+  - wget https://www.browserstack.com/browserstack-local/BrowserStackLocal-linux-x64.zip
+  - unzip BrowserStackLocal-linux-x64.zip
+install:
+  - make install
+before_script:
+  - sh -e /etc/init.d/xvfb start
+  - ./BrowserStackLocal -localIdentifier "$TRAVIS_JOB_NUMBER" "$BROWSERSTACK_ACCESS_KEY" &
+  - sleep 5
+script:
+  - make test-local
 branches:
   only:
     - master
