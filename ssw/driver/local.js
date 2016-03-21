@@ -2,7 +2,7 @@ import chrome from 'selenium-webdriver/chrome';
 import firefox from 'selenium-webdriver/firefox';
 
 function getChromeService() {
-    const chromeBinary = __dirname + '/../../node_modules/.bin/chromedriver';
+    const chromeBinary = __dirname + '/../../node_modules/webdriver-manager/selenium/chromedriver';
 
     return (new chrome.ServiceBuilder(chromeBinary)).build();
 }
