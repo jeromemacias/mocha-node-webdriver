@@ -10,14 +10,21 @@ before((done) => {
     pm2start(pm2processName, {
         script: __dirname + '/../../local_server/build/server.js',
         exec_mode: 'fork'
-    }, done);
+    }, (err, resp) => {
+        if (err) {
+            return done(err);
+        };
+        setTimeout(() => {
+            done(null, resp);
+        }, 5000);
+    });
 });
 
 afterEach(function () { // we need to keep the original this (do not use arrow function)
     allPassed = allPassed && (this.currentTest.state === 'passed');
 });
 
-if (process.env.SAUCE_USERNAME && process.env.SAUCE_ACCESS_KEY) {
+if (process.env.SAUCE) {
     after((done) => {
         postJobUpdate(driver, process.env.SAUCE_USERNAME, process.env.SAUCE_ACCESS_KEY, allPassed, done);
     });

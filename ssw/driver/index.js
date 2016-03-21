@@ -25,13 +25,13 @@ if (process.env.SAUCE) {
     driver = getSauceLabsDriver(process.env.SAUCE_USERNAME, process.env.SAUCE_ACCESS_KEY, browser);
     console.log(`Use ${browser.name.toLowerCase()} browser`);
 } else {
-    const browser = process.env.SELENIUM_BROWSER.toLowerCase() || 'chrome';
+    const browser = process.env.SELENIUM_BROWSER || 'chrome';
     const options = {};
     if (process.env.VERBOSE_MODE) {
         options.verbose = true;
     }
-    driver = getLocalDriver(browser, options);
-    console.log(`Use ${browser} browser`);
+    driver = getLocalDriver(browser.toLowerCase(), options);
+    console.log(`Use ${browser.toLowerCase()} browser`);
 }
 
 export default driver;
