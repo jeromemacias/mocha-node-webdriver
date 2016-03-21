@@ -1,4 +1,4 @@
-mocha-node-webdriver [![Build Status](https://travis-ci.org/jeromemacias/mocha-node-webdriver.svg?branch=master)](https://travis-ci.org/jeromemacias/mocha-node-webdriver)
+mocha-node-webdriver [![Build Status](https://travis-ci.org/jeromemacias/mocha-node-webdriver.svg?branch=master)](https://travis-ci.org/jeromemacias/mocha-node-webdriver) [![Circle CI](https://circleci.com/gh/jeromemacias/mocha-node-webdriver/tree/master.svg?style=svg)](https://circleci.com/gh/jeromemacias/mocha-node-webdriver/tree/master)
 ====================
 
 An example of using mocha to write web app integration tests that run in node.js
