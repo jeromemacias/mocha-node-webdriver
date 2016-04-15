@@ -26,16 +26,16 @@
   "engine-strict": true,
   "dependencies": {},
   "devDependencies": {
-    "babel-eslint": "~5.0.0",
+    "babel-eslint": "^5.0.4",
     "babel-preset-node5": "~10.6.0",
     "babel-register": "~6.5.2",
     "chai": "~3.5.0",
     "chai-as-promised": "~5.2.0",
     "eslint": "~2.2.0",
     "mocha": "~2.4.5",
-    "pm2": "~1.0.1",
+    "pm2": "^1.1.2",
     "request": "~2.69.0",
-    "selenium-webdriver": "~2.52.0",
+    "selenium-webdriver": "^2.53.1",
     "webdriver-manager": "~9.0.0"
   }
 }
