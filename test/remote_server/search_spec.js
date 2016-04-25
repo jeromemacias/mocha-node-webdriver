@@ -1,7 +1,7 @@
 import webdriver from 'selenium-webdriver';
 import { describe, it } from 'selenium-webdriver/testing';
-import driver from '../../ssw/driver';
-import { expect } from '../../ssw/assert/chai';
+import driver from '../../nodium/driver';
+import { expect } from '../../nodium/assert/chai';
 
 describe('access to remote servers', () => {
     it('can search from Wikipedia\'s home page', () => {
