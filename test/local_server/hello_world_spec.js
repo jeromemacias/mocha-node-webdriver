@@ -5,14 +5,14 @@ import { expect } from '../../nodium/assert/chai';
 
 describe('local test server', () => {
     it('responds to GET /hello with "world"', () => {
-        driver.get('http://localhost:3030/hello').then(() => {
-            expect(driver.getPageSource()).to.eventually.contain('world');
-        });
+        driver.get('http://localhost:3030/hello');
+
+        return expect(driver.getPageSource()).to.eventually.contain('world');
     });
 
     it('404s for root', () => {
-        driver.get('http://localhost:3030/').then(() => {
-            expect(driver.getPageSource()).to.eventually.contain('Not Found');
-        });
+        driver.get('http://localhost:3030/');
+
+        return expect(driver.getPageSource()).to.eventually.contain('Not Found');
     });
 });
