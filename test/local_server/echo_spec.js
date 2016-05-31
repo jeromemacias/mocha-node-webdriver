@@ -1,7 +1,7 @@
 import webdriver from 'selenium-webdriver';
 import { describe, it } from 'selenium-webdriver/testing';
-import driver from '../../nodium/driver';
-import { expect } from '../../nodium/assert/chai';
+import driver from 'nodium/lib/driver';
+import { expect } from 'nodium/lib/assert/chai';
 
 describe('operation GET /echo?echo=', () => {
     it('includes value of echo parameter in response', () => {

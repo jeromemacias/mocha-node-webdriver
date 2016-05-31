@@ -1,7 +1,7 @@
 {
   "name": "mocha-node-webdriver",
   "version": "0.0.1",
-  "description": "An example of configuring mocha to drive in-browser tests from node via webdriver.",
+  "description": "An example of configuring mocha to drive in-browser tests from node via nodium.",
   "homepage": "https://github.com/gleneivey/mocha-node-webdriver",
   "repository": {
     "type": "git",
@@ -29,13 +29,12 @@
     "babel-eslint": "^5.0.4",
     "babel-preset-node5": "~10.6.0",
     "babel-register": "~6.5.2",
-    "chai": "~3.5.0",
-    "chai-as-promised": "~5.2.0",
+    "chai-as-promised": "~5.3.0",
     "eslint": "~2.2.0",
     "mocha": "~2.4.5",
+    "nodium": "~0.1.0",
     "pm2": "^1.1.2",
     "request": "~2.69.0",
-    "selenium-webdriver": "^2.53.1",
     "webdriver-manager": "~9.0.0"
   }
 }

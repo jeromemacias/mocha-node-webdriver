@@ -1,8 +1,8 @@
 import { before, afterEach, after } from 'selenium-webdriver/testing';
-import { pm2start, pm2stop } from '../../nodium/hook/pm2';
-import { postJobUpdate as browserstackPostUpdateJob } from '../../nodium/hook/borwserstack';
-import { postJobUpdate as saucePostUpdateJob } from '../../nodium/hook/sauce';
-import driver from '../../nodium/driver';
+import { pm2start, pm2stop } from 'nodium/lib/hook/pm2';
+import { postJobUpdate as browserstackPostUpdateJob } from 'nodium/lib/hook/browserstack';
+import { postJobUpdate as saucePostUpdateJob } from 'nodium/lib/hook/saucelabs';
+import driver from 'nodium/lib/driver';
 
 const pm2processName = 'webdriver-test-server';
 let allPassed = true;
