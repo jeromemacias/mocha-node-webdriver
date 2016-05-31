@@ -1,14 +1,9 @@
 machine:
   node:
-    version: 5.1.0
+    version: 5.7.0
 dependencies:
   pre:
-    - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-    - sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-    - sudo apt-get -qq update
-    - sudo apt-get -qq --only-upgrade install -y google-chrome-stable
-    - sudo apt-get -qq install -y libpango1.0-0 firefox
-    - curl -fsSL https://git.io/v2Ifn | bash
+    - curl -fsSL https://git.io/v2Ifn | bash # circleci-matrix
   override:
     - make install
   post:
@@ -18,19 +13,18 @@ dependencies:
     - tar -xzf sc-latest-linux.tar.gz
 test:
   pre:
+    - ./BrowserStackLocal -localIdentifier $CIRCLE_BUILD_NUM $BROWSERSTACK_ACCESS_KEY:
+        background: true
     - cd sc-*-linux && ./bin/sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY -i $CIRCLE_BUILD_NUM --readyfile ~/sauce_is_ready:
         background: true
     - while [ ! -e ~/sauce_is_ready ]; do sleep 1; done
-    - ./BrowserStackLocal -localIdentifier $CIRCLE_BUILD_NUM $BROWSERSTACK_ACCESS_KEY:
-        background: true
-    - sleep 5
   override:
-    - CIRCLE_NODE_TOTAL=6 CIRCLE_NODE_INDEX=0 circleci-matrix
-    - CIRCLE_NODE_TOTAL=6 CIRCLE_NODE_INDEX=1 circleci-matrix
-    - CIRCLE_NODE_TOTAL=6 CIRCLE_NODE_INDEX=2 circleci-matrix
-    - CIRCLE_NODE_TOTAL=6 CIRCLE_NODE_INDEX=3 circleci-matrix
-    - CIRCLE_NODE_TOTAL=6 CIRCLE_NODE_INDEX=4 circleci-matrix
-    - CIRCLE_NODE_TOTAL=6 CIRCLE_NODE_INDEX=5 circleci-matrix
+    - CIRCLE_NODE_TOTAL=6 CIRCLE_NODE_INDEX=0 ~/.local/bin/circleci-matrix
+    - CIRCLE_NODE_TOTAL=6 CIRCLE_NODE_INDEX=1 ~/.local/bin/circleci-matrix
+    - CIRCLE_NODE_TOTAL=6 CIRCLE_NODE_INDEX=2 ~/.local/bin/circleci-matrix
+    - CIRCLE_NODE_TOTAL=6 CIRCLE_NODE_INDEX=3 ~/.local/bin/circleci-matrix
+    - CIRCLE_NODE_TOTAL=6 CIRCLE_NODE_INDEX=4 ~/.local/bin/circleci-matrix
+    - CIRCLE_NODE_TOTAL=6 CIRCLE_NODE_INDEX=5 ~/.local/bin/circleci-matrix
   post:
     - killall --wait BrowserStackLocal # wait for BrowserStack local to close
     - killall --wait sc # wait for Sauce Connect to close the tunnel
