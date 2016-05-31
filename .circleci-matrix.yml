@@ -1,5 +1,5 @@
 env:
-    - export SELENIUM_BROWSER=chrome
+    - export SELENIUM_BROWSER=chrome; export SELENIUM_BROWSER_BINARY_PATH=node_modules/webdriver-manager/selenium/chromedriver
     - export SELENIUM_BROWSER=firefox
     - export BROWSERSTACK=true; export SELENIUM_BROWSER=chrome
     - export BROWSERSTACK=true; export SELENIUM_BROWSER=firefox
