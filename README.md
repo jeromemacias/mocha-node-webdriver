@@ -1,6 +1,6 @@
 mocha-node-webdriver
 ====================
-[![Build Status](https://travis-ci.org/jeromemacias/mocha-node-webdriver.svg?branch=master)](https://travis-ci.org/jeromemacias/mocha-node-webdriver) [![Circle CI](https://circleci.com/gh/jeromemacias/mocha-node-webdriver/tree/master.svg?style=svg)](https://circleci.com/gh/jeromemacias/mocha-node-webdriver/tree/master) ![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=cVhLSm5lN25sTzNXVzZvOTBrcDRLdz09LS1LbmcwbzRudFlDZzhPUmtvOGQrQUV3PT0=--a6ea787fb17a270475e987369a9ebec9689914de%) [![Sauce Test Status](https://saucelabs.com/buildstatus/jeromemacias-mocha)](https://saucelabs.com/u/jeromemacias-mocha)
+[![Build Status](https://travis-ci.org/jeromemacias/mocha-node-webdriver.svg?branch=master)](https://travis-ci.org/jeromemacias/mocha-node-webdriver) [![Circle CI](https://circleci.com/gh/jeromemacias/mocha-node-webdriver/tree/master.svg?style=shield)](https://circleci.com/gh/jeromemacias/mocha-node-webdriver/tree/master) ![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=cVhLSm5lN25sTzNXVzZvOTBrcDRLdz09LS1LbmcwbzRudFlDZzhPUmtvOGQrQUV3PT0=--a6ea787fb17a270475e987369a9ebec9689914de%) [![Sauce Test Status](https://saucelabs.com/buildstatus/jeromemacias-mocha)](https://saucelabs.com/u/jeromemacias-mocha)
 
 An example of using mocha to write web app integration tests that run in node.js
 and execute through a browser using Selenium WebDriver.
