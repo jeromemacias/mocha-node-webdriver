@@ -1,6 +1,6 @@
 machine:
   node:
-    version: 5.7.0
+    version: 6.9.2
 dependencies:
   pre:
     - curl -fsSL https://git.io/v2Ifn | bash # circleci-matrix
