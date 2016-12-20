@@ -1,25 +1,26 @@
-import webdriver from 'selenium-webdriver';
+import { By } from 'selenium-webdriver';
 import { describe, it } from 'selenium-webdriver/testing';
-import driver from '../../nodium/driver';
-import { expect } from '../../nodium/assert/chai';
+import driver from 'nodium/lib/driver';
+import driverUtilsFactory from 'nodium/lib/driver/utils';
+import { expect } from 'nodium/lib/assert/chai';
+
+const { click, setValue } = driverUtilsFactory(driver);
 
 describe('access to remote servers', () => {
     it('can search from Wikipedia\'s home page', () => {
-        driver.get('http://en.wikipedia.org')
-            .then(() => driver.findElement(webdriver.By.name('search')))
-            .then((element) => element.sendKeys('webdriver'))
-            .then(() => driver.findElement(webdriver.By.name('go')))
-            .then((element) => element.click())
+        return driver.get('http://en.wikipedia.org')
+            .then(() => setValue(By.name('search'), 'webdriver'))
+            .then(() => click(By.name('go')))
             .then(() => {
-                expect(driver.getTitle()).to.eventually.contain('Selenium (software) - Wikipedia, the free encyclopedia');
+                expect(driver.getTitle()).to.eventually.contain('Selenium (software) - Wikipedia');
             });
     });
 
     it('can see the example repo on GitHub', () => {
-        driver.get('http://github.com/gleneivey/mocha-node-webdriver.git')
-            .then(() => driver.findElement(webdriver.By.css('.octicon.octicon-git-pull-request')))
-            .then((element) => {
-                expect(element.getOuterHtml()).to.eventually.not.be.null;
+        return driver.get('http://github.com/gleneivey/mocha-node-webdriver.git')
+            .then(() => driver.findElements(By.css('.octicon.octicon-git-pull-request')))
+            .then((elements) => {
+                expect(!!elements.length).to.be.truthy;
             });
     });
 });

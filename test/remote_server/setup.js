@@ -1,6 +1,6 @@
 import { before, afterEach, after } from 'selenium-webdriver/testing';
-import { postJobUpdate } from '../../nodium/hook/sauce';
-import driver from '../../nodium/driver';
+import { postJobUpdate } from 'nodium/lib/hook/saucelabs';
+import driver from 'nodium/lib/driver';
 
 let allPassed = true;
 

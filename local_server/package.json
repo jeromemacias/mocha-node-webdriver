@@ -1,18 +1,18 @@
 {
-  "name": "demonstration-test-server",
-  "description": "only useful as an example for selenium-node example tests",
-  "author": "Glen E. Ivey",
+  "name": "demonstration-test-server-for-nodium",
+  "description": "Only useful as an example for nodium usage of integration tests",
+  "author": "Jérôme Macias <jerome.macias@gmail.com>",
   "license": "MIT",
   "main": "server",
   "engines": {
-    "node": "~4.2"
+    "node": "~6.9"
   },
   "engine-strict": true,
   "dependencies": {},
   "devDependencies": {
-    "babel-cli": "~6.5.1",
-    "babel-preset-node5": "~10.6.0",
-    "koa": "~2.0.0-alpha.3",
+    "babel-cli": "~6.18.0",
+    "babel-preset-env": "~1.1.4",
+    "koa": "~2.0.0",
     "koa-router": "~7.0.1"
   }
 }
